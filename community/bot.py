@@ -44,11 +44,8 @@ async def on_member_join(member):
 async def on_message(message):
     id = client.get_guild(738424219821670470)
     if message.content.find("hello") != -1:
-        await message.channel.send("Mai saurabh ka chatora bot")
-    elif message.content.find("Bot sabse achha kaun hai?") != -1:
-        await message.channel.send("Saurabh sir for sure")
-    elif message.content.find("HELP ME WITH discord") != -1:
-        await message.channel.send("https://www.youtube.com/watch?v=xdg39s4HSJQ")
+        await message.channel.send("Hello ")
+
     elif message.content == "users?":
         await message.channel.send(f"""Number of users ={id.member_count}""")
 
