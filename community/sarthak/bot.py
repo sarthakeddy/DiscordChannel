@@ -22,28 +22,29 @@ async def reminder_contest():
             for temp in contests:
                 if contests[i]['phase'] == 'BEFORE':
                     time_left = contests[i]['relativeTimeSeconds']
+                    time_neg = time_left
                     time_left = abs(time_left)
-                    if time_left <= 18000:
+                    if time_left <= 18000 and time_neg < 0:
                         contest_link = "https://codeforces.com/contest/"
                         seconds = time_left
                         mint, sec = divmod(seconds, 60)
                         hour, mint = divmod(mint, 60)
-                        answer = discord.Embed(title=contests[i]['name'], url=contest_link+str(contests[i]['id']), description="Contest begins in "+str(hour)+" hrs and "+str(mint)+" minutes.\nGet raedy.")
+                        answer = discord.Embed(title=contests[i]['name'], url=contest_link+str(contests[i]['id']), description="Contest begins in "+str(hour)+" hrs and "+str(mint)+" minutes.\nGet ready to compete.")
                         channel = client.get_channel(channel_id)
-                        await channel.send(answer)
+                        await channel.send(content=None, embed=answer)
                     i += 1
                 else:
                     break
             # channel = client.get_channel(channel_id)
             # await channel.send(answer)
-            await asyncio.sleep(20000) # 5 hrs
+            await asyncio.sleep(19000)
         except Exception as e:
             print(e)
-            await asyncio.sleep(20000) # 5 hrs
+            await asyncio.sleep(19000)
 
 async def update_contest_list():
     await client.wait_until_ready()
-    global contest_list
+    # global contest_list
     while not client.is_closed():
         try:
             link = "https://codeforces.com/api/contest.list?gym=false"
@@ -73,12 +74,12 @@ async def update_contest_list():
             channel = client.get_channel(channel_id)
             if flag != 0:
                 await channel.send(content=None, embed=answer)
-            await asyncio.sleep(93600) # 1 day
+            await asyncio.sleep(93600)
         except Exception as e:
-            print(e)
-            await asyncio.sleep(93600) # 1 day
+            # print(e)
+            await asyncio.sleep(93600)
 
 client.loop.create_task(update_contest_list())
 client.loop.create_task(reminder_contest())
 # carl bot
-client.run(bot_id)
+client.run("bot's token")

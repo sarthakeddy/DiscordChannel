@@ -144,7 +144,7 @@ async def on_message(message):
                     k += 1
                 await message.channel.send(content=None, embed=embed)
 
-# asd = "abcd erf"
-# print(asd.replace(' ', ''))
+asd = "abcd erf"
+print(asd.replace(' ', ''))
 # carl bot
-client.run(client_id)
+client.run("bot's token")
